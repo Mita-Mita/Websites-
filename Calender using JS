@@ -1,0 +1,142 @@
+ <style>
+       
+        .calendar {
+            width: 100%;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        .calendar-header {
+         
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+        }
+        .calendar-header select {
+            font-size: 12px;
+        }
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .calendar-table th{
+            background-color: #3b79b7;
+            color: antiquewhite;
+        }
+        .calendar-table th, .calendar-table td {
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 0px;
+            font-size: 12px;
+            transition: all 0.4s linear;
+        }
+        .calendar-table td a {
+            text-decoration: none !important;
+           
+            color: black;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+        .calendar-table td:hover {
+           background-color: aqua;
+        }
+        #current {
+            background-color: #3b79b7;
+            color: #fff; /* White text on the current date */
+}
+    </style>
+    <div class="calendar">
+        <div class="calendar-header">
+            <select id="month">
+                <option value="0">January</option>
+                <option value="1">February</option>
+                <option value="2">March</option>
+                <option value="3">April</option>
+                <option value="4">May</option>
+                <option value="5">June</option>
+                <option value="6">July</option>
+                <option value="7">August</option>
+                <option value="8">September</option>
+                <option value="9">October</option>
+                <option value="10">November</option>
+                <option value="11">December</option>
+            </select>
+            <select id="year"></select>
+        </div>
+        <table class="calendar-table" id="calendar"></table>
+    </div>
+     <script>
+
+        // Function to populate the year dropdown
+        function populateYears() {
+            const yearSelect = document.getElementById('year');
+            const currentYear = new Date().getFullYear();
+            for (let i = currentYear - 10; i <= currentYear + 10; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.text = i;
+                yearSelect.appendChild(option);
+            }
+            yearSelect.value = currentYear;
+        }
+
+        // Function to generate the calendar
+        function generateCalendar(month, year) {
+            const calendarTable = document.getElementById('calendar');
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const firstDay = new Date(year, month, 1).getDay();
+            const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+            let calendarHtml = '<tr>';
+            for (let i = 0; i < 7; i++) {
+                calendarHtml += '<th>' + dayNames[i] + '</th>';
+            }
+            calendarHtml += '</tr>';
+
+            let day = 1;
+            for (let i = 0; i < 6; i++) {
+                if (day > daysInMonth) break;
+                calendarHtml += '<tr>';
+                for (let j = 0; j < 7; j++) {
+                    if (i === 0 && j < firstDay) {
+                        calendarHtml += '<td></td>';
+                    } else if (day > daysInMonth) {
+                        calendarHtml += '<td></td>';
+                    } else {
+                        // /2023/10/14/
+                        calendarHtml += `<td><a id="${day === (new Date().getDate())? "current":""}" href="/${year}/${month + 1}/${day}">${day}</a></td>`;
+                        day++;
+                    }
+                }
+                calendarHtml += '</tr>';
+            }
+
+            calendarTable.innerHTML = calendarHtml;
+        }
+
+        // Event listener for month and year select
+        document.getElementById('month').addEventListener('change', updateCalendar);
+        document.getElementById('year').addEventListener('change', updateCalendar);
+
+        // Event listener for date links
+        document.getElementById('calendar').addEventListener('click', function (e) {
+            if (e.target.tagName === 'A') {
+            }
+        });
+
+        // Function to update the calendar when the month or year changes
+        function updateCalendar() {
+            const selectedMonth = parseInt(document.getElementById('month').value);
+            const selectedYear = parseInt(document.getElementById('year').value);
+            generateCalendar(selectedMonth, selectedYear);
+        }
+
+        // Initialize the calendar
+        populateYears();
+        const currentMonth = new Date().getMonth();
+        const currentYear = new Date().getFullYear();
+        document.getElementById('month').value = currentMonth;
+        document.getElementById('year').value = currentYear;
+        generateCalendar(currentMonth, currentYear);
+    </script>
