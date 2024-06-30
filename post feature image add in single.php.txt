@@ -1,0 +1,7 @@
+<div class="featured-image" style="margin-top:15px; position:relative;margin-left:45px;" >
+    <?php
+    if ( has_post_thumbnail() ) {
+        the_post_thumbnail(); // Display the featured image
+    }
+    ?>
+</div>

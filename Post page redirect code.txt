@@ -1,0 +1,9 @@
+function redirect_after_publish($post_id) {
+    if (wp_is_post_autosave($post_id) || wp_is_post_revision($post_id)) {
+        return;
+    }
+    // Redirect to the Add New Post page after publishing a post.
+    wp_redirect(admin_url('post-new.php'));
+    exit;
+}
+add_action('publish_post', 'redirect_after_publish');

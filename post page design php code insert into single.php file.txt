@@ -1,0 +1,138 @@
+<?php
+/**
+ * The template for displaying all single posts.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
+ *
+ * @package Astra
+ * @since 1.0.0
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+get_header(); ?>
+
+<?php if ( astra_page_layout() == 'left-sidebar' ) : ?>
+
+	<?php get_sidebar(); ?>
+
+<?php endif ?>
+
+<style>
+
+#primary p{
+  margin-top: 10px !important;
+  
+}
+.featured-image-captionw{
+  text-align:center;
+      margin: 0.5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #666666;
+  font-family: "SolaimanLipiNormal",Helvetica,Arial,SolaimanLipi,sans-serif;
+}
+
+</style>
+	<div id="primary" <?php astra_primary_class(); ?> style="padding:0 20px; margin-top: 3px !important;">
+  
+
+<script>
+function redirectWithPrint() {
+    // Get the current URL and append "//print" to it
+    const currentURL = window.location.href;
+    const newURL = currentURL + "//print";
+    
+    // Redirect to the new URL
+    window.location.href = newURL;
+}
+</script>
+<span class="headicon">
+    
+    <div style="border-bottom: 3px solid #D1CFCF;padding-bottom:10px;" > 
+    
+     <a class="share-button facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo esc_url(get_permalink()); ?>" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+   <a href="whatsapp://send?text=Read%20this%20amazing%20article!:%20<?php echo urlencode(get_permalink()); ?>" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="32" viewBox="0 0 448 512"><path fill="currentColor" d="M224 122.8c-72.7 0-131.8 59.1-131.9 131.8c0 24.9 7 49.2 20.2 70.1l3.1 5l-13.3 48.6l49.9-13.1l4.8 2.9c20.2 12 43.4 18.4 67.1 18.4h.1c72.6 0 133.3-59.1 133.3-131.8c0-35.2-15.2-68.3-40.1-93.2c-25-25-58-38.7-93.2-38.7zm77.5 188.4c-3.3 9.3-19.1 17.7-26.7 18.8c-12.6 1.9-22.4.9-47.5-9.9c-39.7-17.2-65.7-57.2-67.7-59.8c-2-2.6-16.2-21.5-16.2-41s10.2-29.1 13.9-33.1c3.6-4 7.9-5 10.6-5c2.6 0 5.3 0 7.6.1c2.4.1 5.7-.9 8.9 6.8c3.3 7.9 11.2 27.4 12.2 29.4s1.7 4.3.3 6.9c-7.6 15.2-15.7 14.6-11.6 21.6c15.3 26.3 30.6 35.4 53.9 47.1c4 2 6.3 1.7 8.6-1c2.3-2.6 9.9-11.6 12.5-15.5c2.6-4 5.3-3.3 8.9-2c3.6 1.3 23.1 10.9 27.1 12.9s6.6 3 7.6 4.6c.9 1.9.9 9.9-2.4 19.1zM400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM223.9 413.2c-26.6 0-52.7-6.7-75.8-19.3L64 416l22.5-82.2c-13.9-24-21.2-51.3-21.2-79.3C65.4 167.1 136.5 96 223.9 96c42.4 0 82.2 16.5 112.2 46.5c29.9 30 47.9 69.8 47.9 112.2c0 87.4-72.7 158.5-160.1 158.5z"/></svg></a>
+
+<a href="fb-messenger://share?link=<?php echo urlencode(get_permalink()); ?>">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 36 36"><path fill="currentColor" d="M32.33 6a2 2 0 0 0-.41 0h-28a2 2 0 0 0-.53.08l14.45 14.39Z" class="clr-i-solid clr-i-solid-path-1"/><path fill="currentColor" d="m33.81 7.39l-14.56 14.5a2 2 0 0 1-2.82 0L2 7.5a2 2 0 0 0-.07.5v20a2 2 0 0 0 2 2h28a2 2 0 0 0 2-2V8a2 2 0 0 0-.12-.61ZM5.3 28H3.91v-1.43l7.27-7.21l1.41 1.41Zm26.61 0h-1.4l-7.29-7.23l1.41-1.41l7.27 7.21Z" class="clr-i-solid clr-i-solid-path-2"/><path fill="none" d="M0 0h36v36H0z"/></svg></a>
+ <a href="#" onclick="redirectWithPrint()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M16 8V5H8v3H6V3h12v5h-2Zm2 4.5q.425 0 .713-.288T19 11.5q0-.425-.288-.713T18 10.5q-.425 0-.713.288T17 11.5q0 .425.288.713T18 12.5ZM16 19v-4H8v4h8Zm2 2H6v-4H2V8h20v9h-4v4Zm2-6v-5H4v5h2v-2h12v2h2ZM4 10h16H4Z"/></svg></a>
+ 
+    
+    </div>
+    
+     <div style=" padding-top:4px;">
+            <?php
+if (have_posts()) {
+    while (have_posts()) {
+        the_post(); // Set up the post data
+
+        // Display the post title
+        the_title('<h1 style="border-bottom: 3px solid #D1CFCF;margin-bottom:20px; font-size: 32px; ">', '</h1>');
+    }
+}
+?>
+</div>
+  
+    </span>
+
+
+<div class="featured-image" style="margin-top:15px; position:relative" >
+    <?php
+    if ( has_post_thumbnail() ) {
+        the_post_thumbnail(); // Display the featured image
+    }
+    ?>
+</div>
+<?php if (have_posts()): while (have_posts()): the_post(); ?>
+    <!-- Your post content goes here -->
+
+    <?php
+    $featured_image_caption = get_the_post_thumbnail_caption();
+    if ($featured_image_caption) {
+        echo '<div class="featured-image-captionw">' . $featured_image_caption . '</div>';
+    }
+    ?>
+<?php endwhile; endif; ?>
+
+
+<div class="post-content" style="margin-top:22px; text-align:justify;font-size:18px;line-height:31px" >
+    <?php
+    the_content();
+    ?>
+</div>
+
+
+<div style="margin-top:10px">
+
+<span class="post-date" style="font-size:16px; color:black;font-weight:bold; margin-left:522px">
+প্রকাশিত :
+<?php the_date().","?>
+<?php echo";" ?>
+<?php echo" "?>
+<?php echo get_the_time('g:i, A'); ?>
+</span>
+
+
+</div>
+		
+   
+<div>
+
+<p style="color: rgb(176,173,173);border-bottom: 3px solid #D1CFCF;border-top: 3px solid #D1CFCF;margin-top:30px !important;padding-top:7px !important; margin-bottom:10px;">নবযুগ ডট কম’র প্রকাশিত/প্রচারিত কোনো সংবাদ, তথ্য, ছবি, আলোকচিত্র, রেখাচিত্র, ভিডিওচিত্র, অডিও কনটেন্ট কপিরাইট আইনে পূর্বানুমতি ছাড়া ব্যবহার করা যাবে না।</p>
+</div>
+	</div>
+
+
+
+
+<?php if ( astra_page_layout() == 'right-sidebar' ) : ?>
+
+	<?php get_sidebar(); ?>
+
+<?php endif ?>
+
+<?php get_footer(); ?>
